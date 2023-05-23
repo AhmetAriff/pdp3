@@ -1,4 +1,4 @@
 public interface Tactic {
 
-    public void attack();
+    public int attack();
 }
