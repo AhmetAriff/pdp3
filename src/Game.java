@@ -5,24 +5,26 @@ import java.util.Random;
 public class Game {
 
     public Game (List<Colony> colonies) {
-        this.colonies = colonies;
-    }
-    private int tour;
-    private List<Colony> colonies;
-    private  int numberOfColonies = colonies.size();
 
-    public void startGame(){
+            this.colonies = colonies;
+            this.numberOfColonies=colonies.size();
+        }
+        private int tour;
+        private final List<Colony> colonies;
+        private  int numberOfColonies = 0;
+
+        public void startGame(){
         while(!isItGameOver()){
             startTour();
             produceFood();
 
             for(int i = 0;i<numberOfColonies-1;i++){
                 for(int j = i+1;j<numberOfColonies;j++){
-                    startWar(colonies.get(i),colonies.get(i));
+                    startWar(colonies.get(i),colonies.get(j));
                 }
             }
             clearConsole();
-            printConsole();
+            System.out.println(toString());
         }
     }
     private boolean isItGameOver(){
@@ -103,20 +105,29 @@ public class Game {
         }
 
     }
-    private void printConsole(){
+    @Override
+    public String toString() {
+        String str = "-----------------------------------------" +
+                "\n Tour :" + tour +
+                "\n Colony     Population     FoodStock       Win        Lose";
+        for (int i = 0; i < numberOfColonies; i++) {
 
+            if (colonies.get(i).population <= 0 || colonies.get(i).foodStock <= 0) {
+                str += "\n  " + colonies.get(i).symbol + "             --            --           --          --";
+            } else {
+                str += "\n  "
+                        + colonies.get(i).symbol
+                        + "\t\t\t\t" + colonies.get(i).population
+                        + "\t\t\t " + colonies.get(i).foodStock
+                        + "\t\t\t" + colonies.get(i).win
+                        + "\t\t\t" + colonies.get(i).lose;
+            }
+        }
+        return str;
     }
     private void clearConsole(){
-        try {
-            if (System.getProperty("os.name").contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
-            }
-        } catch (Exception e) {
-            // Exception handling
-        }
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
 
     }
 

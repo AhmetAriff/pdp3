@@ -22,4 +22,8 @@ public class Colony {
     public Tactic tactic;
 
     public Production production;
+
+    public void setSymbol(Character symbol) {
+        this.symbol = symbol;
+    }
 }
