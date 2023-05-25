@@ -5,10 +5,15 @@ public class Colony {
         this.foodStock=population*population;
         this.win=0;
         this.lose=0;
-        this.tactic = new ATactic();
-        this.production = new AProduction();
+        if(population%2==0){
+            this.tactic = new ATactic();
+            this.production = new AProduction();
+        }
+        else {
+            this.tactic = new BTactic();
+            this.production = new BProduction();
+        }
     }
-
     public Character symbol;
 
     public int population;

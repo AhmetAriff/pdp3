@@ -1,11 +1,10 @@
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Random;
 
 public class Game {
 
     public Game (List<Colony> colonies) {
-
             this.colonies = colonies;
             this.numberOfColonies=colonies.size();
         }
@@ -25,9 +24,10 @@ public class Game {
             }
             clearConsole();
             System.out.println(toString());
+            }
         }
-    }
-    private boolean isItGameOver(){
+
+        private boolean isItGameOver(){
         int count = 0;
         int i = 0;
         while (i<numberOfColonies) {
@@ -113,14 +113,14 @@ public class Game {
         for (int i = 0; i < numberOfColonies; i++) {
 
             if (colonies.get(i).population <= 0 || colonies.get(i).foodStock <= 0) {
-                str += "\n  " + colonies.get(i).symbol + "             --            --           --          --";
+                str += "\n  " + colonies.get(i).symbol + "             --            --            --          --   ";
             } else {
                 str += "\n  "
                         + colonies.get(i).symbol
-                        + "\t\t\t\t" + colonies.get(i).population
-                        + "\t\t\t " + colonies.get(i).foodStock
-                        + "\t\t\t" + colonies.get(i).win
-                        + "\t\t\t" + colonies.get(i).lose;
+                        + "\t\t" + colonies.get(i).population
+                        + "\t     " + colonies.get(i).foodStock
+                        + "\t    " + colonies.get(i).win
+                        + "\t\t" + colonies.get(i).lose;
             }
         }
         return str;
@@ -128,7 +128,6 @@ public class Game {
     private void clearConsole(){
         System.out.print("\033[H\033[2J");
         System.out.flush();
-
     }
 
 }

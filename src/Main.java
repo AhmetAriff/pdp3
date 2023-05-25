@@ -19,10 +19,6 @@ public class Main {
 
         int length = validSymbols.length();
 
-
-        int minSymbol = 33;  // ASCII tablosunda geçerli sembollerin başlangıç değeri
-        int maxSymbol = 126; // ASCII tablosunda geçerli sembollerin bitiş değeri
-
         System.out.print("Enter Populations: ");
         String input = scanner.nextLine();
         scanner.close();
